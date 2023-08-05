@@ -9,19 +9,21 @@ public class TypeMenu : MonoBehaviour
     void Start()
     {
         Time.timeScale= 0;
+        if (PlayerPrefs.HasKey("showTip"))
+        {
+            ShovTip();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.X))
-        {
-            ShovTip();
-        }
+
     }
     public void ShovTip()
     {
         image.SetActive(false);
         Time.timeScale = 1;
+        PlayerPrefs.SetInt("showTip", 1);
     }
 }

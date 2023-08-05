@@ -21,7 +21,8 @@ public class Jump : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                rb.AddForce(new Vector3(0, jumpSpeed, 0), ForceMode.Impulse);
+                JumpButton();
+
             }
         }
     }
@@ -35,6 +36,14 @@ public class Jump : MonoBehaviour
     private void OnCollisionExit(Collision other)
     {
         isGrounded = false;
+    }
+
+    public void JumpButton()
+    {
+        if (isGrounded)
+        {
+            rb.AddForce(new Vector3(0, jumpSpeed, 0), ForceMode.Impulse);
+        }
     }
 
 }
