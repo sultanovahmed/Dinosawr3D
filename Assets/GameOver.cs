@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour
 {
     [SerializeField] public GameObject GameOverimage;
+    [SerializeField] public GameObject GameOverimagePteradaptel;
 
     void Start()
     {
@@ -24,6 +25,11 @@ public class GameOver : MonoBehaviour
         if(other.CompareTag("cactus"))
         {
             GameOverimage.SetActive(true);
+            Time.timeScale = 0;
+        }
+        if (other.CompareTag("helicopter"))
+        {
+            GameOverimagePteradaptel.SetActive(true);
             Time.timeScale = 0;
         }
     }
