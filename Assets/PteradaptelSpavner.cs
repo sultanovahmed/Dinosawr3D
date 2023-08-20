@@ -27,6 +27,6 @@ public class PteradaptelSpavner : MonoBehaviour
     private void CreatePteradaptel()
     {
         Instantiate(pteradaptelPrefab, SpawnPosition.position, pteradaptelPrefab.transform.rotation);
-        cooldown = Random.Range(12.0f, 17.0f);
+        cooldown = Random.Range(10.0f, 17.0f);
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Jump : MonoBehaviour
 {
@@ -10,6 +11,11 @@ public class Jump : MonoBehaviour
     Rigidbody rb;
     [SerializeField] GameObject Dino1;
     [SerializeField] GameObject Dino2;
+    private bool MoznoPrigat = true;
+    [SerializeField] Text textScore;
+    float score;
+    [SerializeField] Text textMaxScore;
+    float MaxScore;
 
     void Start()
     {
@@ -21,7 +27,7 @@ public class Jump : MonoBehaviour
     {
         if (isGrounded)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && MoznoPrigat == true)
             {
                 JumpButton();
 
@@ -31,12 +37,26 @@ public class Jump : MonoBehaviour
         {
             Dino1.SetActive(false);
             Dino2.SetActive(true);
+            MoznoPrigat = false;
         }        
         if (Input.GetKeyUp(KeyCode.DownArrow))
         {
             Dino1.SetActive(true);
             Dino2.SetActive(false);
+            MoznoPrigat = true;
         }
+    }
+
+    private void FixedUpdate()
+    {
+        score += Time.deltaTime * 10;
+        textScore.text = score.ToString("00000");
+
+        if (MaxScore <= score) 
+        { 
+            MaxScore = score; 
+        }
+        textMaxScore.text = MaxScore.ToString("00000");
     }
     private void OnCollisionStay(Collision other)
     {
@@ -63,5 +83,9 @@ public class Jump : MonoBehaviour
         Dino2.SetActive(true);
     }
 
-
+    public void UpButton()
+    {
+        Dino1.SetActive(true);
+        Dino2.SetActive(false);
+    }
 }
